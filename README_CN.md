@@ -1,4 +1,4 @@
-# Sub2API
+# PixelHub
 
 <div align="center">
 
@@ -16,7 +16,7 @@
 
 </div>
 
-> **Sub2API 官方仅使用  `sub2api.org` 与 `pincc.ai` 两个域名。其他使用 Sub2API 名义的网站可能为第三方部署或服务，与本项目无关，请自行甄别。**
+> **PixelHub 官方仅使用  `sub2api.org` 与 `pincc.ai` 两个域名。其他使用 PixelHub 名义的网站可能为第三方部署或服务，与本项目无关，请自行甄别。**
 ---
 
 ## 在线体验
@@ -31,7 +31,7 @@
 
 ## 项目概述
 
-Sub2API 是一个 AI API 网关平台，用于分发和管理 AI 产品订阅的 API 配额。用户通过平台生成的 API Key 调用上游 AI 服务，平台负责鉴权、计费、负载均衡和请求转发。
+PixelHub 是一个 AI API 网关平台，用于分发和管理 AI 产品订阅的 API 配额。用户通过平台生成的 API Key 调用上游 AI 服务，平台负责鉴权、计费、负载均衡和请求转发。
 
 ## 核心功能
 
@@ -52,7 +52,7 @@ Sub2API 是一个 AI API 网关平台，用于分发和管理 AI 产品订阅的
 <table>
 <tr>
 <td width="180" align="center" valign="middle"><a href="https://shop.pincc.ai/"><img src="assets/partners/logos/pincc-logo.png" alt="pincc" width="150"></a></td>
-<td valign="middle"><b><a href="https://shop.pincc.ai/">PinCC</a></b> 是基于 Sub2API 搭建的官方中转服务，提供 Claude Code、Codex、Gemini 等主流模型的稳定中转，开箱即用，免去自建部署与运维烦恼。</td>
+<td valign="middle"><b><a href="https://shop.pincc.ai/">PinCC</a></b> 是基于 PixelHub 搭建的官方中转服务，提供 Claude Code、Codex、Gemini 等主流模型的稳定中转，开箱即用，免去自建部署与运维烦恼。</td>
 </tr>
 
 <tr>
@@ -72,7 +72,7 @@ Sub2API 是一个 AI API 网关平台，用于分发和管理 AI 产品订阅的
 
 <tr>
 <td width="180"><a href="https://code.silkapi.com/register?aff=SUB2API"><img src="assets/partners/logos/silkapi.png" alt="silkapi" width="150"></a></td>
-<td>感谢 丝绸API 赞助了本项目！ <a href="https://code.silkapi.com/register?aff=SUB2API">丝绸API</a> 是基于 Sub2API 搭建的中转服务，专注于提供 Codex 高速稳定API中转。</td>
+<td>感谢 丝绸API 赞助了本项目！ <a href="https://code.silkapi.com/register?aff=SUB2API">丝绸API</a> 是基于 PixelHub 搭建的中转服务，专注于提供 Codex 高速稳定API中转。</td>
 </tr>
 
 <tr>
@@ -111,11 +111,11 @@ Sub2API 是一个 AI API 网关平台，用于分发和管理 AI 产品订阅的
 
 ## 生态项目
 
-围绕 Sub2API 的社区扩展与集成项目：
+围绕 PixelHub 的社区扩展与集成项目：
 
 | 项目 | 说明 | 功能 |
 |------|------|------|
-| ~~[Sub2ApiPay](https://github.com/touwaeriol/sub2apipay)~~ | ~~自助支付系统~~ | **已内置** — 支付功能已集成到 Sub2API 中，无需独立部署。详见 [支付配置指南](docs/PAYMENT_CN.md) |
+| ~~[Sub2ApiPay](https://github.com/touwaeriol/sub2apipay)~~ | ~~自助支付系统~~ | **已内置** — 支付功能已集成到 PixelHub 中，无需独立部署。详见 [支付配置指南](docs/PAYMENT_CN.md) |
 | [sub2api-mobile](https://github.com/ckken/sub2api-mobile) | 移动端管理控制台 | 跨平台应用（iOS/Android/Web），支持用户管理、账号管理、监控看板、多后端切换；基于 Expo + React Native 构建 |
 
 ## 技术栈
@@ -131,7 +131,7 @@ Sub2API 是一个 AI API 网关平台，用于分发和管理 AI 产品订阅的
 
 ## Nginx 反向代理注意事项
 
-通过 Nginx 反向代理 Sub2API（或 CRS 服务）并搭配 Codex CLI 使用时，需要在 Nginx 配置的 `http` 块中添加：
+通过 Nginx 反向代理 PixelHub（或 CRS 服务）并搭配 Codex CLI 使用时，需要在 Nginx 配置的 `http` 块中添加：
 
 ```nginx
 underscores_in_headers on;
@@ -223,28 +223,23 @@ curl -sSL https://raw.githubusercontent.com/Wei-Shaw/sub2api/main/deploy/install
 
 #### 快速开始（一键部署）
 
-使用自动化部署脚本快速搭建：
+克隆仓库后，一条命令即可构建镜像并启动 PixelHub、PostgreSQL、Redis：
 
 ```bash
-# 创建部署目录
-mkdir -p sub2api-deploy && cd sub2api-deploy
-
-# 下载并运行部署准备脚本
-curl -sSL https://raw.githubusercontent.com/Wei-Shaw/sub2api/main/deploy/docker-deploy.sh | bash
-
-# 启动服务
-docker compose up -d
-
-# 查看日志
-docker compose logs -f sub2api
+git clone https://github.com/Haoquan6/sub2api.git PixelHub
+cd PixelHub
+bash deploy/docker-deploy.sh --start
 ```
 
+部署完成后访问：`http://你的服务器IP:8080`
+
 **脚本功能：**
-- 下载 `docker-compose.local.yml`（本地保存为 `docker-compose.yml`）和 `.env.example`
-- 自动生成安全凭证（JWT_SECRET、TOTP_ENCRYPTION_KEY、POSTGRES_PASSWORD）
-- 创建 `.env` 文件并填充自动生成的密钥
-- 创建数据目录（使用本地目录，便于备份和迁移）
-- 显示生成的凭证供你记录
+- 使用当前源码构建 `pixelhub:latest` 镜像
+- 自动生成安全凭证（`JWT_SECRET`、`TOTP_ENCRYPTION_KEY`、`POSTGRES_PASSWORD`、`ADMIN_PASSWORD`）
+- 创建 `deploy/.env` 并填充自动生成的密钥
+- 创建本地数据目录（`deploy/data`、`deploy/postgres_data`、`deploy/redis_data`），便于备份和迁移
+- 启动 PixelHub、PostgreSQL、Redis 三个容器
+- 显示管理员账号和密码供你记录
 
 #### 手动部署
 
@@ -252,8 +247,8 @@ docker compose logs -f sub2api
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/Wei-Shaw/sub2api.git
-cd sub2api/deploy
+git clone https://github.com/Haoquan6/sub2api.git PixelHub
+cd PixelHub/deploy
 
 # 2. 复制环境配置文件
 cp .env.example .env
@@ -271,8 +266,8 @@ POSTGRES_PASSWORD=your_secure_password_here
 # JWT 密钥（推荐 - 重启后保持用户登录状态）
 JWT_SECRET=your_jwt_secret_here
 
-# TOTP 加密密钥（推荐 - 重启后保留双因素认证）
-TOTP_ENCRYPTION_KEY=your_totp_key_here
+# TOTP 加密密钥（推荐 - 必须是 openssl rand -hex 32 生成的 hex 字符串）
+TOTP_ENCRYPTION_KEY=your_hex_totp_key_here
 
 # 可选：管理员账号
 ADMIN_EMAIL=admin@example.com
@@ -300,16 +295,16 @@ mkdir -p data postgres_data redis_data
 
 # 5. 启动所有服务
 # 选项 A：本地目录版（推荐 - 易于迁移）
-docker compose -f docker-compose.local.yml up -d
+docker compose -f docker-compose.local.yml up -d --build
 
 # 选项 B：命名卷版（简单设置）
-docker compose up -d
+docker compose up -d --build
 
 # 6. 查看状态
 docker compose -f docker-compose.local.yml ps
 
 # 7. 查看日志
-docker compose -f docker-compose.local.yml logs -f sub2api
+docker compose -f docker-compose.local.yml logs -f pixelhub
 ```
 
 #### 部署版本对比
@@ -337,17 +332,17 @@ docker compose -f docker-compose.local.yml logs -f sub2api
 
 在浏览器中打开 `http://你的服务器IP:8080`
 
-如果管理员密码是自动生成的，在日志中查找：
+如果使用一键部署脚本，管理员密码会写入 `deploy/.env` 并在脚本输出中显示：
 ```bash
-docker compose -f docker-compose.local.yml logs sub2api | grep "admin password"
+grep -E '^(ADMIN_EMAIL|ADMIN_PASSWORD)=' deploy/.env
 ```
 
 #### 升级
 
 ```bash
-# 拉取最新镜像并重建容器
-docker compose -f docker-compose.local.yml pull
-docker compose -f docker-compose.local.yml up -d
+# 拉取最新代码并重建容器
+git pull
+docker compose -f deploy/docker-compose.local.yml up -d --build
 ```
 
 #### 轻松迁移（本地目录版）
@@ -356,34 +351,35 @@ docker compose -f docker-compose.local.yml up -d
 
 ```bash
 # 源服务器
-docker compose -f docker-compose.local.yml down
+cd PixelHub
+docker compose -f deploy/docker-compose.local.yml down
 cd ..
-tar czf sub2api-complete.tar.gz sub2api-deploy/
+tar czf pixelhub-complete.tar.gz PixelHub/
 
 # 传输到新服务器
-scp sub2api-complete.tar.gz user@new-server:/path/
+scp pixelhub-complete.tar.gz user@new-server:/path/
 
 # 新服务器
-tar xzf sub2api-complete.tar.gz
-cd sub2api-deploy/
-docker compose -f docker-compose.local.yml up -d
+tar xzf pixelhub-complete.tar.gz
+cd PixelHub/
+docker compose -f deploy/docker-compose.local.yml up -d --build
 ```
 
 #### 常用命令
 
 ```bash
 # 停止所有服务
-docker compose -f docker-compose.local.yml down
+docker compose -f deploy/docker-compose.local.yml down
 
 # 重启
-docker compose -f docker-compose.local.yml restart
+docker compose -f deploy/docker-compose.local.yml restart
 
 # 查看所有日志
-docker compose -f docker-compose.local.yml logs -f
+docker compose -f deploy/docker-compose.local.yml logs -f
 
 # 删除所有数据（谨慎！）
-docker compose -f docker-compose.local.yml down
-rm -rf data/ postgres_data/ redis_data/
+docker compose -f deploy/docker-compose.local.yml down
+rm -rf deploy/data/ deploy/postgres_data/ deploy/redis_data/
 ```
 
 ---
@@ -611,7 +607,7 @@ go generate ./cmd/server
 
 ## Antigravity 使用说明
 
-Sub2API 支持 [Antigravity](https://antigravity.so/) 账户，授权后可通过专用端点访问 Claude 和 Gemini 模型。
+PixelHub 支持 [Antigravity](https://antigravity.so/) 账户，授权后可通过专用端点访问 Claude 和 Gemini 模型。
 
 ### 专用端点
 
